@@ -3,17 +3,14 @@
 const root = document.documentElement;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* ---------- Theme (remembers choice, else follows system) ---------- */
+/* ---------- Theme (light "silk" by default, remembers choice) ---------- */
 const themeBtn = document.getElementById('theme');
-const saved = localStorage.getItem('theme');
-const systemDark = matchMedia('(prefers-color-scheme: dark)');
-const currentTheme = () => saved || (systemDark.matches ? 'dark' : 'light');
 function applyTheme(t) {
   root.dataset.theme = t;
   themeBtn.setAttribute('aria-label', `Switch to ${t === 'dark' ? 'light' : 'dark'} theme`);
-  document.querySelector('meta[name="theme-color"]').content = t === 'dark' ? '#0f0a0d' : '#f6f1e6';
+  document.querySelector('meta[name="theme-color"]').content = t === 'dark' ? '#10241c' : '#f7f1e3';
 }
-applyTheme(currentTheme());
+applyTheme(localStorage.getItem('theme') || 'light');
 themeBtn.addEventListener('click', () => {
   const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
   const swap = () => { applyTheme(next); localStorage.setItem('theme', next); };
@@ -21,9 +18,8 @@ themeBtn.addEventListener('click', () => {
 });
 
 /* ---------- Spotlight on the hero name follows the pointer ---------- */
-const hero = document.querySelector('.hero');
 if (!reduced && matchMedia('(pointer: fine)').matches) {
-  hero.addEventListener('pointermove', (e) => {
+  document.querySelector('.hero').addEventListener('pointermove', (e) => {
     document.querySelectorAll('.spot').forEach((el) => {
       const r = el.getBoundingClientRect();
       el.style.setProperty('--spot-x', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
@@ -32,7 +28,7 @@ if (!reduced && matchMedia('(pointer: fine)').matches) {
   });
 }
 
-/* ---------- Filmography filter with View Transitions ---------- */
+/* ---------- Work filter with View Transitions ---------- */
 const buttons = [...document.querySelectorAll('.filters button')];
 const credits = [...document.querySelectorAll('.credit')];
 credits.forEach((c, i) => { c.style.viewTransitionName = `credit-${i}`; });
@@ -48,17 +44,16 @@ buttons.forEach((b) => b.addEventListener('click', () => {
     : applyFilter(f);
 }));
 
-/* ---------- Fallback reveal for browsers without scroll-driven animations ---------- */
+/* ---------- Fallback reveal when scroll-driven animations are unsupported ---------- */
 if (!CSS.supports('animation-timeline: view()')) {
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
-      if (e.isIntersecting) {
-        e.target.animate(
-          [{ opacity: 0, transform: 'translateY(2rem)' }, { opacity: 1, transform: 'none' }],
-          { duration: reduced ? 0 : 600, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'backwards' }
-        );
-        io.unobserve(e.target);
-      }
+      if (!e.isIntersecting) return;
+      e.target.animate(
+        [{ opacity: 0, transform: 'translateY(2rem)' }, { opacity: 1, transform: 'none' }],
+        { duration: reduced ? 0 : 600, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'backwards' }
+      );
+      io.unobserve(e.target);
     });
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
@@ -66,7 +61,6 @@ if (!CSS.supports('animation-timeline: view()')) {
 
 /* ---------- Count-up numbers ---------- */
 if (!reduced) {
-  const nums = document.querySelectorAll('[data-count]');
   const io2 = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (!e.isIntersecting) return;
@@ -80,19 +74,7 @@ if (!reduced) {
       io2.unobserve(el);
     });
   }, { threshold: 0.6 });
-  nums.forEach((n) => io2.observe(n));
+  document.querySelectorAll('[data-count]').forEach((n) => io2.observe(n));
 }
-
-/* ---------- Copy phone number ---------- */
-const status = document.getElementById('status');
-document.getElementById('copy').addEventListener('click', async () => {
-  try {
-    await navigator.clipboard.writeText('+91 8123465902');
-    status.textContent = 'Number copied to clipboard.';
-  } catch {
-    status.textContent = 'Copy failed. Number: +91 8123465902';
-  }
-  setTimeout(() => (status.textContent = ''), 3500);
-});
 
 document.getElementById('yr').textContent = new Date().getFullYear();

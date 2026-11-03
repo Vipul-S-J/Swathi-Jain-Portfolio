@@ -1,22 +1,19 @@
 # Swathi Jain | Acting Portfolio
 
-Static site (HTML, CSS, JS). No build step, no cost.
+Static site (HTML, CSS, JS). No build step, no cost. Theme: "Silk & Zari" (light by default, dark toggle).
 
 ## Publish on GitHub Pages
-1. Create a repo (for example `swathi-jain`) and push these files to the `main` branch root.
-2. Repo **Settings → Pages → Build and deployment → Deploy from a branch → main / (root)**.
-3. The site goes live at `https://<username>.github.io/<repo>/`.
+1. Push these files to the `main` branch root of the repo.
+2. **Settings → Pages → Deploy from a branch → main / (root)**.
+3. Live at `https://<username>.github.io/Swathi-Jain-Portfolio/`.
 
-## Add her photo
-Save a portrait (about 4:5, e.g. 800x1000) as `assets/swathi.jpg`. Until then a monogram shows.
-For link previews, replace `assets/og-card.svg` with a 1200x630 `og-card.png` and update the `og:image` tag
-(use the full `https://...` URL, social sites need absolute URLs).
+## Photos and posters
+- Portrait: save as `assets/swathi.jpg` (about 4:5, e.g. 800x1000).
+- Posters: save in `assets/posters/` (2:3, about 600x900) using these exact names:
+  `premada-oorali`, `riktha`, `kerebete`, `preman`, `jenugudu`, `lakshana`, `amruthadhare`,
+  `avanu-matthe-shravani`, `bhagyalakshmi`, `ambassador`, `mayavi-manase`, `billionaires-hidden-life` (all `.jpg`).
+  Any missing poster automatically shows a styled title card.
+- Link preview: replace `assets/og-card.svg` with a 1200x630 `og-card.png` and use a full `https://` URL in the `og:image` tag.
 
-## Edit content
-- Credits: `<ol class="credits">` in `index.html` (set `data-type` to `film`, `tv`, `short` or `audio`).
-- Phone: search for `8123465902` in `index.html` and `script.js`.
-- Colours: top of `style.css` (`--crimson`, `--gold`, `--teal`).
-
-## Features used
-CSS scroll-driven animations, View Transitions API, `@property`, `light-dark()`, `oklch()`, `color-mix()`,
-container query units, `text-wrap: balance`, and a reduced-motion mode. Older browsers fall back gracefully.
+## Contact
+No phone or WhatsApp is published. To add a contact button later, uncomment/add it in the "Open to work" section of `index.html`.
