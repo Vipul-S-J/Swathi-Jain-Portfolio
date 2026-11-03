@@ -8,7 +8,7 @@ const themeBtn = document.getElementById('theme');
 function applyTheme(t) {
   root.dataset.theme = t;
   themeBtn.setAttribute('aria-label', `Switch to ${t === 'dark' ? 'light' : 'dark'} theme`);
-  document.querySelector('meta[name="theme-color"]').content = t === 'dark' ? '#3a5462' : '#e9eff2';
+  document.querySelector('meta[name="theme-color"]').content = t === 'dark' ? '#172229' : '#e9eff2';
 }
 applyTheme(localStorage.getItem('theme') || 'dark');
 themeBtn.addEventListener('click', () => {
@@ -65,6 +65,15 @@ if (!reduced) {
   }, { threshold: 0.6 });
   document.querySelectorAll('[data-count]').forEach((n) => io2.observe(n));
 }
+
+/* ---------- Pointer spotlight on cards ---------- */
+document.querySelectorAll('.counts li, .poster').forEach((el) => {
+  el.addEventListener('pointermove', (e) => {
+    const r = el.getBoundingClientRect();
+    el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  });
+});
 
 document.getElementById('yr').textContent = new Date().getFullYear();
 
