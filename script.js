@@ -3,14 +3,14 @@
 const root = document.documentElement;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* ---------- Theme (light "silk" by default, remembers choice) ---------- */
+/* ---------- Theme (slate (dark) by default, remembers choice) ---------- */
 const themeBtn = document.getElementById('theme');
 function applyTheme(t) {
   root.dataset.theme = t;
   themeBtn.setAttribute('aria-label', `Switch to ${t === 'dark' ? 'light' : 'dark'} theme`);
-  document.querySelector('meta[name="theme-color"]').content = t === 'dark' ? '#10241c' : '#f7f1e3';
+  document.querySelector('meta[name="theme-color"]').content = t === 'dark' ? '#3a5462' : '#e9eff2';
 }
-applyTheme(localStorage.getItem('theme') || 'light');
+applyTheme(localStorage.getItem('theme') || 'dark');
 themeBtn.addEventListener('click', () => {
   const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
   const swap = () => { applyTheme(next); localStorage.setItem('theme', next); };
