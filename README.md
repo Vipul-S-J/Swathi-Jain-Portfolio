@@ -3,12 +3,12 @@
 Static site (HTML, CSS, JS). No build step, no cost. Theme: "Silk & Zari" (light by default, dark toggle).
 
 ## Publish on GitHub Pages
-1. Push these files to the `main` branch root of the repo.
+1. Push these files to the `main` branch root of the repo. `index.html` is the animated landing, `portfolio.html` is the full portfolio.
 2. **Settings → Pages → Deploy from a branch → main / (root)**.
 3. Live at `https://<username>.github.io/Swathi-Jain-Portfolio/`.
 
 ## Photos and posters
-- Portrait: save as `assets/swathi.jpg` (about 4:5, e.g. 800x1000).
+- Portrait: save the photo as `assets/swathi.jpg` (used by the landing and the portfolio).
 - Posters: save in `assets/posters/` (2:3, about 600x900) using these exact names:
   `premada-oorali`, `riktha`, `kerebete`, `preman`, `jenugudu`, `lakshana`, `amruthadhare`,
   `avanu-matthe-shravani`, `bhagyalakshmi`, `ambassador`, `mayavi-manase`, `billionaires-hidden-life` (all `.jpg`).
@@ -16,4 +16,4 @@ Static site (HTML, CSS, JS). No build step, no cost. Theme: "Silk & Zari" (light
 - Link preview: replace `assets/og-card.svg` with a 1200x630 `og-card.png` and use a full `https://` URL in the `og:image` tag.
 
 ## Contact
-No phone or WhatsApp is published. To add a contact button later, uncomment/add it in the "Open to work" section of `index.html`.
+No phone or WhatsApp is published. To add a contact button later, uncomment/add it in the "Open to work" section of `portfolio.html`.
