@@ -9,9 +9,9 @@ Repo Settings → Pages → Deploy from branch → `main` / root.
 - `index.html` – landing, about, work (filterable credits), gallery, contact
 - `style.css` – red/cream theme, Bebas Neue + Satoshi fonts
 - `script.js` – intro animation, filters, reveal, counters
-- `gallery.js` – horizontal scroll gallery (Motion `animate` + `scroll` from CDN, with fallback)
+- `gallery.js` – morphing gallery (Coverflow / Grid / Stack) with a lightbox, plain JS, no dependencies
 - `assets/swathi.jpg` – original photo; `assets/hero-cutout.webp` – hero cut-out
-- `assets/gallery/` – gallery images (replace with real photos, keep the names or edit `index.html`)
+- `assets/gallery/` – gallery images (`06-photo`, `07-photo` are your real photos; add more `<figure class="g-item">` entries in `index.html`)
 - `assets/posters/` – add `<slug>.jpg` (2:3) per credit; a title card shows until then
 
 ## Notes

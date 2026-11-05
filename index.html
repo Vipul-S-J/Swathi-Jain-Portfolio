@@ -158,19 +158,30 @@
           <p class="idx">03 &middot; Gallery</p>
           <h2 class="sec">Photo Gallery</h2>
         </div>
-        <div class="scroll-container" id="scrollContainer">
-          <div class="sticky-wrapper">
-            <div class="gallery" id="galleryTrack">
-          <figure class="gallery-item"><img src="assets/gallery/01-portrait.jpg" alt="Swathi Jain, portrait photo" loading="lazy" width="900" height="1125"><figcaption><span class="no">01</span><h3>Portrait</h3></figcaption></figure>
-          <figure class="gallery-item"><img src="assets/gallery/02-studio-red.jpg" alt="Swathi Jain, studio red photo" loading="lazy" width="900" height="1125"><figcaption><span class="no">02</span><h3>Studio red</h3></figcaption></figure>
-          <figure class="gallery-item"><img src="assets/gallery/03-closeup.jpg" alt="Swathi Jain, close-up photo" loading="lazy" width="900" height="1125"><figcaption><span class="no">03</span><h3>Close-up</h3></figcaption></figure>
-          <figure class="gallery-item"><img src="assets/gallery/04-duotone.jpg" alt="Swathi Jain, duotone photo" loading="lazy" width="900" height="1125"><figcaption><span class="no">04</span><h3>Duotone</h3></figcaption></figure>
-          <figure class="gallery-item"><img src="assets/gallery/05-studio-cream.jpg" alt="Swathi Jain, studio cream photo" loading="lazy" width="900" height="1125"><figcaption><span class="no">05</span><h3>Studio cream</h3></figcaption></figure>
-            </div>
-            <div class="gallery-hud" aria-hidden="true"><span id="galleryNo">01 / 05</span><span class="bar"><i id="galleryBar"></i></span></div>
-          </div>
+        <div class="g-bar" role="group" aria-label="Gallery layout">
+          <button class="nav-b" id="gPrev" aria-label="Previous photo">&larr;</button>
+          <button data-layout="coverflow" aria-pressed="true">Coverflow</button>
+          <button data-layout="grid" aria-pressed="false">Grid</button>
+          <button data-layout="stack" aria-pressed="false">Stack</button>
+          <button class="nav-b" id="gNext" aria-label="Next photo">&rarr;</button>
         </div>
-        <div class="gallery-outro"><p>More photos coming soon.</p></div>
+        <div class="g-stage" id="gStage">
+          <figure class="g-item" tabindex="0" role="button" aria-label="Open photo: Evening"><img src="assets/gallery/06-photo.jpg" alt="Swathi Jain, evening photo" loading="lazy"><figcaption><span>01</span>Evening</figcaption></figure>
+          <figure class="g-item" tabindex="0" role="button" aria-label="Open photo: Smile"><img src="assets/gallery/07-photo.jpg" alt="Swathi Jain, smile photo" loading="lazy"><figcaption><span>02</span>Smile</figcaption></figure>
+          <figure class="g-item" tabindex="0" role="button" aria-label="Open photo: Portrait"><img src="assets/gallery/01-portrait.jpg" alt="Swathi Jain, portrait photo" loading="lazy"><figcaption><span>03</span>Portrait</figcaption></figure>
+          <figure class="g-item" tabindex="0" role="button" aria-label="Open photo: Close-up"><img src="assets/gallery/03-closeup.jpg" alt="Swathi Jain, close-up photo" loading="lazy"><figcaption><span>04</span>Close-up</figcaption></figure>
+          <figure class="g-item" tabindex="0" role="button" aria-label="Open photo: Studio red"><img src="assets/gallery/02-studio-red.jpg" alt="Swathi Jain, studio red photo" loading="lazy"><figcaption><span>05</span>Studio red</figcaption></figure>
+          <figure class="g-item" tabindex="0" role="button" aria-label="Open photo: Duotone"><img src="assets/gallery/04-duotone.jpg" alt="Swathi Jain, duotone photo" loading="lazy"><figcaption><span>06</span>Duotone</figcaption></figure>
+          <figure class="g-item" tabindex="0" role="button" aria-label="Open photo: Studio cream"><img src="assets/gallery/05-studio-cream.jpg" alt="Swathi Jain, studio cream photo" loading="lazy"><figcaption><span>07</span>Studio cream</figcaption></figure>
+        </div>
+        <p class="g-count" id="gCount" aria-live="polite">01 / 07</p>
+        <dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+          <div class="lb-in"><img id="lbImg" alt=""></div>
+          <button class="lb-x" id="lbX" aria-label="Close">&times;</button>
+          <button class="lb-p" id="lbP" aria-label="Previous">&larr;</button>
+          <button class="lb-n" id="lbN" aria-label="Next">&rarr;</button>
+          <p class="lb-cap" id="lbCap"></p>
+        </dialog>
       </section>
 
       <!-- OPEN TO WORK -->
