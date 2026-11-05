@@ -116,5 +116,16 @@ document.getElementById('yr').textContent = new Date().getFullYear();
   var ready=Promise.all([document.fonts?document.fonts.ready:0, img&&img.decode?img.decode().catch(function(){}):0]);
   var started=false;
   function go(){ if(started) return; started=true; requestAnimationFrame(play); }
-  ready.then(go,go); setTimeout(go,1200);
+  var pl=document.querySelector(".preloader"), num=document.getElementById("plNum");
+  var t0=performance.now(), MIN=1500, doneReady=false, slid=false;
+  ready.then(function(){doneReady=true},function(){doneReady=true}); setTimeout(function(){doneReady=true},2200);
+  (function tick(now){
+    var p=Math.min((now-t0)/MIN,1), e=1-Math.pow(1-p,3);
+    if(num) num.textContent=String(Math.round(e*100)).padStart(3,"0");
+    if(pl) pl.style.setProperty("--p",e);
+    if(p<1||!doneReady){ requestAnimationFrame(tick); return; }
+    if(slid) return; slid=true;
+    if(pl) pl.classList.add("out");
+    setTimeout(go,450);
+  })(t0);
 })();
