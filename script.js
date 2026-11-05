@@ -1,21 +1,6 @@
 'use strict';
 
-const root = document.documentElement;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-/* ---------- Theme (slate (dark) by default, remembers choice) ---------- */
-const themeBtn = document.getElementById('theme');
-function applyTheme(t) {
-  root.dataset.theme = t;
-  themeBtn.setAttribute('aria-label', `Switch to ${t === 'dark' ? 'light' : 'dark'} theme`);
-  document.querySelector('meta[name="theme-color"]').content = t === 'dark' ? '#172229' : '#e9eff2';
-}
-applyTheme(localStorage.getItem('theme') || 'dark');
-themeBtn.addEventListener('click', () => {
-  const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
-  const swap = () => { applyTheme(next); localStorage.setItem('theme', next); };
-  document.startViewTransition && !reduced ? document.startViewTransition(swap) : swap();
-});
 
 /* ---------- Work filter with View Transitions ---------- */
 const buttons = [...document.querySelectorAll('.filters button')];
@@ -66,8 +51,8 @@ if (!reduced) {
   document.querySelectorAll('[data-count]').forEach((n) => io2.observe(n));
 }
 
-/* ---------- Pointer spotlight on cards ---------- */
-document.querySelectorAll('.counts li, .poster').forEach((el) => {
+/* ---------- Pointer spotlight on posters ---------- */
+document.querySelectorAll('.poster').forEach((el) => {
   el.addEventListener('pointermove', (e) => {
     const r = el.getBoundingClientRect();
     el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
@@ -102,6 +87,7 @@ document.getElementById('yr').textContent = new Date().getFullYear();
     $(".title span").forEach(function(s,i){
       add(s,[{translate:"0 105%"},{translate:"0 0"}],{duration:1000,delay:200+i*38*S,easing:EXPO});
     });
+    add(document.querySelector(".scene>img"),[{opacity:0,translate:"0 4%"},{opacity:1,translate:"0 0"}],{duration:1200,delay:150,easing:EXPO});
     add(document.querySelector(".lnav"),[{clipPath:"inset(0 50% 0 50%)"},{clipPath:"inset(0 0% 0 0%)"}],{duration:800,delay:450,easing:PANEL});
     $(".logo,.menu").forEach(function(e,i){
       add(e,[{opacity:0,translate:"0 35%"},{opacity:1,translate:"0 0"}],{duration:600,delay:780+i*70,easing:SOFT});
